@@ -36,10 +36,10 @@ export default function Login({ onLogin }) {
   };
 
   return (
-    <div className="min-h-screen bg-black flex items-center justify-center px-4 py-10 text-slate-100">
+    <div className="min-h-screen bg-[#15202b] flex items-center justify-center px-4 py-10 text-slate-100">
       <form
         onSubmit={handleSubmit}
-        className="w-full max-w-sm rounded-2xl border border-slate-800 bg-[#16181c] p-8 shadow-[0_24px_70px_rgba(0,0,0,0.55)] flex flex-col gap-5"
+        className="w-full max-w-sm rounded-2xl border border-[#38444d] bg-[#192734] p-8 shadow-[0_24px_70px_rgba(0,0,0,0.36)] flex flex-col gap-5"
       >
         <div className="flex flex-col items-center gap-2 mb-1">
           <div className="w-12 h-12 rounded-full bg-sky-500 flex items-center justify-center text-white text-xl font-black shadow-sm">
@@ -53,14 +53,14 @@ export default function Login({ onLogin }) {
           </p>
         </div>
         <input
-          className="border border-slate-700 rounded-xl px-4 py-3 text-slate-50 bg-black focus:outline-none focus:ring-2 focus:ring-sky-500/30 focus:border-sky-500 transition placeholder:text-slate-500"
+          className="border border-[#38444d] rounded-xl px-4 py-3 text-slate-50 bg-[#22303c] focus:outline-none focus:ring-2 focus:ring-sky-500/30 focus:border-sky-500 transition placeholder:text-slate-500"
           placeholder="Username"
           value={form.username}
           onChange={(e) => setForm({ ...form, username: e.target.value })}
           required
         />
         <input
-          className="border border-slate-700 rounded-xl px-4 py-3 text-slate-50 bg-black focus:outline-none focus:ring-2 focus:ring-sky-500/30 focus:border-sky-500 transition placeholder:text-slate-500"
+          className="border border-[#38444d] rounded-xl px-4 py-3 text-slate-50 bg-[#22303c] focus:outline-none focus:ring-2 focus:ring-sky-500/30 focus:border-sky-500 transition placeholder:text-slate-500"
           placeholder="Password"
           type="password"
           value={form.password}

@@ -72,9 +72,9 @@ export default function Posts({ user, token, onLogout }) {
   };
 
   return (
-    <div className="min-h-screen bg-black text-slate-100">
-      <div className="mx-auto min-h-screen max-w-2xl border-x border-slate-800 bg-black">
-        <header className="sticky top-0 z-10 border-b border-slate-800 bg-black/85 px-5 py-3 backdrop-blur">
+    <div className="min-h-screen bg-[#15202b] text-slate-100">
+      <div className="mx-auto min-h-screen max-w-2xl border-x border-[#38444d] bg-[#192734]">
+        <header className="sticky top-0 z-10 border-b border-[#38444d] bg-[#192734]/90 px-5 py-3 backdrop-blur">
           <div className="flex items-center justify-between gap-4">
             <div>
               <h1 className="text-xl font-black tracking-tight">Home</h1>
@@ -88,7 +88,7 @@ export default function Posts({ user, token, onLogout }) {
               </span>
               <button
                 onClick={onLogout}
-                className="rounded-full border border-slate-700 px-4 py-2 text-sm font-bold text-slate-200 transition-colors hover:bg-slate-900"
+                className="rounded-full border border-[#536471] px-4 py-2 text-sm font-bold text-slate-200 transition-colors hover:bg-[#22303c]"
               >
                 Logout
               </button>
@@ -99,7 +99,7 @@ export default function Posts({ user, token, onLogout }) {
         <main>
           <form
             onSubmit={handlePost}
-            className="flex gap-3 border-b border-slate-800 px-5 py-4"
+            className="flex gap-3 border-b border-[#38444d] px-5 py-4"
           >
             <div className="mt-1 flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-sky-500 text-base font-black text-white">
               {userInitial}
@@ -111,7 +111,7 @@ export default function Posts({ user, token, onLogout }) {
                 value={content}
                 onChange={(e) => setContent(e.target.value)}
               />
-              <div className="flex items-center justify-end gap-2 border-t border-slate-900 pt-3">
+              <div className="flex items-center justify-end gap-2 border-t border-[#253341] pt-3">
                 {editing && (
                   <button
                     type="button"
@@ -119,7 +119,7 @@ export default function Posts({ user, token, onLogout }) {
                       setEditing(null);
                       setContent("");
                     }}
-                    className="rounded-full px-4 py-2 text-sm font-bold text-slate-300 transition-colors hover:bg-slate-900"
+                    className="rounded-full px-4 py-2 text-sm font-bold text-slate-300 transition-colors hover:bg-[#22303c]"
                   >
                     Cancel
                   </button>
@@ -136,7 +136,7 @@ export default function Posts({ user, token, onLogout }) {
           </form>
 
           {posts.length === 0 && (
-            <div className="border-b border-slate-800 px-5 py-12 text-center">
+            <div className="border-b border-[#38444d] px-5 py-12 text-center">
               <p className="text-lg font-bold text-slate-100">No posts yet</p>
               <p className="mt-1 text-sm text-slate-500">
                 Be the first to start the timeline.
@@ -147,7 +147,7 @@ export default function Posts({ user, token, onLogout }) {
           {posts.map((post) => (
             <article
               key={post.id}
-              className="border-b border-slate-800 px-5 py-4 transition-colors hover:bg-slate-950"
+              className="border-b border-[#38444d] px-5 py-4 transition-colors hover:bg-[#22303c]"
             >
               <div className="flex gap-3">
                 <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-slate-700 text-base font-black text-white">
