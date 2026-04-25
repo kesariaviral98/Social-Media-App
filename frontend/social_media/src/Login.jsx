@@ -36,31 +36,31 @@ export default function Login({ onLogin }) {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-indigo-100 via-white to-pink-100 flex items-center justify-center px-4">
+    <div className="min-h-screen bg-white flex items-center justify-center px-4 py-10">
       <form
         onSubmit={handleSubmit}
-        className="bg-white/80 backdrop-blur-sm rounded-2xl p-8 w-full max-w-sm flex flex-col gap-5 shadow-xl border border-white/40"
+        className="w-full max-w-sm rounded-2xl border border-slate-200 bg-white p-8 shadow-[0_24px_70px_rgba(15,20,25,0.10)] flex flex-col gap-5"
       >
-        <div className="flex flex-col items-center gap-1 mb-2">
-          <div className="w-12 h-12 rounded-full bg-gradient-to-br from-indigo-500 to-pink-500 flex items-center justify-center text-white text-xl font-bold shadow-md">
-          X
+        <div className="flex flex-col items-center gap-2 mb-1">
+          <div className="w-12 h-12 rounded-full bg-sky-500 flex items-center justify-center text-white text-xl font-black shadow-sm">
+            X
           </div>
-          <h2 className="text-2xl font-bold text-gray-800 tracking-tight">
+          <h2 className="text-2xl font-bold text-slate-950 tracking-tight">
             {isRegister ? "Create Account" : "Welcome Back"}
           </h2>
-          <p className="text-sm text-gray-500">
-            {isRegister ? "Sign up to get started" : "Log in to continue"}
+          <p className="text-sm text-slate-500">
+            {isRegister ? "Join the conversation" : "Log in to see what is new"}
           </p>
         </div>
         <input
-          className="border border-gray-200 rounded-xl px-4 py-2.5 text-gray-800 bg-gray-50/60 focus:outline-none focus:ring-2 focus:ring-indigo-400 focus:border-transparent transition"
+          className="border border-slate-200 rounded-xl px-4 py-3 text-slate-950 bg-white focus:outline-none focus:ring-2 focus:ring-sky-500/25 focus:border-sky-500 transition placeholder:text-slate-400"
           placeholder="Username"
           value={form.username}
           onChange={(e) => setForm({ ...form, username: e.target.value })}
           required
         />
         <input
-          className="border border-gray-200 rounded-xl px-4 py-2.5 text-gray-800 bg-gray-50/60 focus:outline-none focus:ring-2 focus:ring-indigo-400 focus:border-transparent transition"
+          className="border border-slate-200 rounded-xl px-4 py-3 text-slate-950 bg-white focus:outline-none focus:ring-2 focus:ring-sky-500/25 focus:border-sky-500 transition placeholder:text-slate-400"
           placeholder="Password"
           type="password"
           value={form.password}
@@ -69,16 +69,16 @@ export default function Login({ onLogin }) {
         />
         <button
           type="submit"
-          className="bg-gradient-to-r from-indigo-500 to-purple-600 hover:from-indigo-600 hover:to-purple-700 text-white font-semibold py-2.5 rounded-xl shadow-md hover:shadow-lg transition-all"
+          className="bg-sky-500 hover:bg-sky-600 text-white font-bold py-3 rounded-full shadow-sm transition-colors"
         >
           {isRegister ? "Register" : "Log In"}
         </button>
-        <p className="text-center text-sm text-gray-500">
+        <p className="text-center text-sm text-slate-500">
           {isRegister ? "Already have an account?" : "Don't have an account?"}{" "}
           <button
             type="button"
             onClick={() => setIsRegister(!isRegister)}
-            className="text-indigo-500 font-medium hover:underline"
+            className="text-sky-500 font-semibold hover:underline"
           >
             {isRegister ? "Log In" : "Register"}
           </button>
