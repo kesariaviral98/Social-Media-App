@@ -5,6 +5,7 @@ export default function Posts({ user, token, onLogout }) {
   const [posts, setPosts] = useState([]);
   const [content, setContent] = useState("");
   const [editing, setEditing] = useState(null);
+  const userInitial = user.username?.charAt(0).toUpperCase() || "?";
 
   const handleEdit = (post) => {
     setEditing(post);
@@ -71,98 +72,118 @@ export default function Posts({ user, token, onLogout }) {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-indigo-50 via-white to-pink-50">
-      {/* Header */}
-      <div className="bg-white/80 backdrop-blur-sm border-b border-gray-200 px-4 py-3 sticky top-0 z-10">
-        <div className="max-w-xl mx-auto px-4 flex justify-between items-center">
-          <h2 className="text-xl font-bold bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">
-            Posts
-          </h2>
-          <div className="flex items-center gap-3">
-            <span className="text-gray-500 text-sm">
-              Hi,{" "}
-              <span className="font-medium text-gray-700">{user.username}</span>
-            </span>
-            <button
-              onClick={onLogout}
-              className="bg-gray-100 hover:bg-red-50 text-gray-500 hover:text-red-500 px-3 py-1.5 rounded-lg text-sm font-medium transition-all"
-            >
-              Logout
-            </button>
-          </div>
-        </div>
-      </div>
-
-      <div className="max-w-xl mx-auto mt-6 px-4">
-        {/* Create Post */}
-        <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-5 mb-6 shadow-sm border border-white/40">
-          <form onSubmit={handlePost} className="flex flex-col gap-3">
-            <textarea
-              className="border border-gray-200 rounded-xl px-4 py-3 text-gray-800 bg-gray-50/60 resize-none focus:outline-none focus:ring-2 focus:ring-indigo-400 focus:border-transparent transition min-h-[80px]"
-              placeholder="What's on your mind?"
-              value={content}
-              onChange={(e) => setContent(e.target.value)}
-            />
-            <div className="flex gap-2">
+    <div className="min-h-screen bg-slate-50 text-slate-950">
+      <div className="mx-auto min-h-screen max-w-2xl border-x border-slate-200 bg-white">
+        <header className="sticky top-0 z-10 border-b border-slate-200 bg-white/90 px-5 py-3 backdrop-blur">
+          <div className="flex items-center justify-between gap-4">
+            <div>
+              <h1 className="text-xl font-black tracking-tight">Home</h1>
+              <p className="text-xs font-medium text-slate-500">
+                Latest posts from your network
+              </p>
+            </div>
+            <div className="flex items-center gap-3">
+              <span className="hidden text-sm font-semibold text-slate-600 sm:inline">
+                @{user.username}
+              </span>
               <button
-                type="submit"
-                className="bg-gradient-to-r from-indigo-500 to-purple-600 hover:from-indigo-600 hover:to-purple-700 text-white font-semibold px-5 py-2 rounded-xl shadow-md hover:shadow-lg transition-all"
+                onClick={onLogout}
+                className="rounded-full border border-slate-200 px-4 py-2 text-sm font-bold text-slate-700 transition-colors hover:bg-slate-100"
               >
-                {editing ? "Update" : "Post"}
+                Logout
               </button>
-              {editing && (
+            </div>
+          </div>
+        </header>
+
+        <main>
+          <form
+            onSubmit={handlePost}
+            className="flex gap-3 border-b border-slate-200 px-5 py-4"
+          >
+            <div className="mt-1 flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-sky-500 text-base font-black text-white">
+              {userInitial}
+            </div>
+            <div className="min-w-0 flex-1">
+              <textarea
+                className="min-h-[96px] w-full resize-none border-0 bg-transparent px-0 py-2 text-lg leading-relaxed text-slate-950 outline-none placeholder:text-slate-500"
+                placeholder="What is happening?"
+                value={content}
+                onChange={(e) => setContent(e.target.value)}
+              />
+              <div className="flex items-center justify-end gap-2 border-t border-slate-100 pt-3">
+                {editing && (
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setEditing(null);
+                      setContent("");
+                    }}
+                    className="rounded-full px-4 py-2 text-sm font-bold text-slate-600 transition-colors hover:bg-slate-100"
+                  >
+                    Cancel
+                  </button>
+                )}
                 <button
-                  type="button"
-                  onClick={() => {
-                    setEditing(null);
-                    setContent("");
-                  }}
-                  className="bg-gray-100 hover:bg-gray-200 text-gray-600 px-5 py-2 rounded-xl transition-colors"
+                  type="submit"
+                  disabled={!content.trim()}
+                  className="rounded-full bg-sky-500 px-5 py-2 text-sm font-bold text-white transition-colors hover:bg-sky-600 disabled:cursor-not-allowed disabled:opacity-50"
                 >
-                  Cancel
+                  {editing ? "Update" : "Post"}
                 </button>
-              )}
+              </div>
             </div>
           </form>
-        </div>
 
-        {/* Posts List */}
-        <div className="flex flex-col gap-4 pb-8">
+          {posts.length === 0 && (
+            <div className="border-b border-slate-200 px-5 py-12 text-center">
+              <p className="text-lg font-bold text-slate-950">No posts yet</p>
+              <p className="mt-1 text-sm text-slate-500">
+                Be the first to start the timeline.
+              </p>
+            </div>
+          )}
+
           {posts.map((post) => (
-            <div
+            <article
               key={post.id}
-              className="bg-white/80 backdrop-blur-sm rounded-2xl p-5 shadow-sm border border-white/40 hover:shadow-md transition-shadow"
+              className="border-b border-slate-200 px-5 py-4 transition-colors hover:bg-slate-50/80"
             >
-              <div className="flex justify-between items-center mb-3">
-                <div className="flex items-center gap-2.5">
-                  <div className="w-8 h-8 rounded-full bg-gradient-to-br from-indigo-400 to-purple-500 flex items-center justify-center text-white text-sm font-bold shadow-sm">
-                    {post.username?.charAt(0).toUpperCase()}
+              <div className="flex gap-3">
+                <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-slate-900 text-base font-black text-white">
+                  {post.username?.charAt(0).toUpperCase() || "?"}
+                </div>
+                <div className="min-w-0 flex-1">
+                  <div className="mb-1 flex flex-wrap items-baseline gap-x-2">
+                    <span className="font-bold text-slate-950">
+                      {post.username}
+                    </span>
+                    <span className="text-sm text-slate-500">
+                      @{post.username}
+                    </span>
                   </div>
-                  <span className="font-semibold text-gray-800">
-                    {post.username}
-                  </span>
+                  <p className="whitespace-pre-line text-[15px] leading-relaxed text-slate-900">
+                    {post.content}
+                  </p>
+                  <div className="mt-3 flex gap-2">
+                    <button
+                      onClick={() => handleEdit(post)}
+                      className="rounded-full px-3 py-1.5 text-sm font-bold text-sky-600 transition-colors hover:bg-sky-50"
+                    >
+                      Edit
+                    </button>
+                    <button
+                      onClick={() => handleDelete(post.id)}
+                      className="rounded-full px-3 py-1.5 text-sm font-bold text-rose-600 transition-colors hover:bg-rose-50"
+                    >
+                      Delete
+                    </button>
+                  </div>
                 </div>
               </div>
-              <p className="text-gray-700 whitespace-pre-line leading-relaxed">
-                {post.content}
-              </p>
-              <div className="flex gap-3 mt-4 pt-3 border-t border-gray-100">
-                <button
-                  onClick={() => handleEdit(post)}
-                  className="text-indigo-500 hover:text-indigo-700 text-sm font-medium transition-colors"
-                >
-                  Edit
-                </button>
-                <button
-                  onClick={() => handleDelete(post.id)}
-                  className="text-red-400 hover:text-red-600 text-sm font-medium transition-colors"
-                >
-                  Delete
-                </button>
-              </div>
-            </div>
+            </article>
           ))}
-        </div>
+        </main>
       </div>
     </div>
   );
